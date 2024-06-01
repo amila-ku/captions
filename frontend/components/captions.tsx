@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 import { useState } from 'react'
 import useSWR from 'swr'
 
-const fetcher = (...args) => fetch(...args).then((res) => res.json())
+const fetcher = (...args: Parameters<typeof fetch>) => fetch(...args).then((res) => res.json())
 
 export function Captions() {
   const [location, setLocation] = useState('')
@@ -23,7 +23,7 @@ export function Captions() {
     // You can display an error message to the user here
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const newUrl = `http://127.0.0.1:4000/captions?location=${location}&mood=${mood}&words=${words}`
     setUrl(newUrl)
