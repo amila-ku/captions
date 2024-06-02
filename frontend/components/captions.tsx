@@ -25,7 +25,8 @@ export function Captions() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const newUrl = `http://127.0.0.1:4000/captions?location=${location}&mood=${mood}&words=${words}`
+    const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://127.0.0.1:4000'
+    const newUrl = `${apiBaseUrl}/captions?location=${location}&mood=${mood}&words=${words}`
     setUrl(newUrl)
   }
 
