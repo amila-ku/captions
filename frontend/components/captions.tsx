@@ -13,6 +13,7 @@ export function Captions() {
   const [mood, setMood] = useState('')
   const [words, setWords] = useState('')
   const [url, setUrl] = useState('')
+  const [copiedText, setCopiedText] = useState('')
 
   const { data, isValidating, error } = useSWR(url, fetcher)
 
@@ -28,6 +29,16 @@ export function Captions() {
     const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'https://captionsapp-vlx4xifzdq-nw.a.run.app'
     const newUrl = `${apiBaseUrl}/captions?location=${location}&mood=${mood}&words=${words}`
     setUrl(newUrl)
+  }
+
+  const copyToClipboard = () => {
+    if (data?.caption) {
+      navigator.clipboard.writeText(data.caption)
+      setCopiedText(data.caption)
+      setTimeout(() => {
+        setCopiedText('')
+      }, 2000)
+    }
   }
 
   return (
@@ -72,6 +83,9 @@ export function Captions() {
                 ) : data?.caption ? (
                   <div className="prose prose-gray max-w-none">
                     <p>{data.caption}</p>
+                    <Button onClick={copyToClipboard}>
+                      {copiedText === data.caption ? 'Copied' : 'Copy'}
+                    </Button>
                   </div>
                 ) : (
                   <div>No caption available</div>
