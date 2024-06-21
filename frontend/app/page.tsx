@@ -9,10 +9,6 @@ export default function Home() {
           <Captions />
         </div>
       </div>
-
-
-
-
     </main>
   );
 }
