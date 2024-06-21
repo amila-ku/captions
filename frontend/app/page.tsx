@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Captions } from "@/components/captions";
+import { Captions } from "@/components/Captions";
 
 export default function Home() {
   return (
