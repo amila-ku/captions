@@ -15,8 +15,9 @@ export function Captions() {
     words: '',
   });
   const [copiedText, setCopiedText] = useState('');
+  const [shouldFetch, setShouldFetch] = useState(false);
 
-  const { data, isValidating, error } = useCaptionGenerator(formData);
+  const { data, isValidating, error, mutate } = useCaptionGenerator(formData, shouldFetch);
 
   if (error) {
     console.error('API Error:', error);
@@ -29,7 +30,8 @@ export function Captions() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // The API call is triggered automatically by the useCaptionGenerator hook
+    setShouldFetch(true);     // The API call is triggered automatically by the useCaptionGenerator hook
+    mutate()
   };
 
   const copyToClipboard = () => {
