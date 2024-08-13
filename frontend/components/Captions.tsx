@@ -7,7 +7,6 @@ import { FormSection } from '@/components/FormSection';
 import { DisplaySection } from '@/components/DisplaySection';
 import { useCaptionGenerator } from '@/components/hooks/useCaptionGenerator';
 import { FormData } from '@/components/types';
-import { AdPlaceholder} from '@/components/AdPlaceholder';
 
 export function Captions() {
   const [formData, setFormData] = useState<FormData>({
@@ -50,7 +49,6 @@ export function Captions() {
       <div className="rounded-lg border border-gray-200 dark:border-gray-800">
         <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 divide-gray-200 dark:divide-gray-800">
           <Header />
-          <AdPlaceholder />
           <FormSection 
             formData={formData}
             onFormChange={handleFormChange}
